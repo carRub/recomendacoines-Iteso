@@ -3,10 +3,6 @@
 .bgimg-1 {
     position: relative;
     opacity: .90;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('../../src/img/iteso3.jpg');
     height: 100%;
 }
 
