@@ -1,3 +1,4 @@
+document.title = "Recomendaciones ITESO"
 document.querySelector('head').innerHTML += '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
 document.querySelector('header').innerHTML = `
 
