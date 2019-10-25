@@ -274,7 +274,7 @@ document.querySelector('header').innerHTML = `
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <p mr-auto>Ve tus comentarios <a class="registerLink" href="#" data-dismiss="modal">aquí</a></p>
+                    <p mr-auto>Ve tus comentarios a tus <a href="../../comentariosUsuarioProfes.html">profes</a> y <a href="../../comentariosUsuarioMaterias.html">materias</a></p>
                 </div>
             </div>
         </div>
