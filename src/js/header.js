@@ -1,8 +1,9 @@
+document.title = "Recomendaciones ITESO"
 document.querySelector('head').innerHTML += '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
 document.querySelector('header').innerHTML = `
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgba(0, 0, 0, .5)">
-      <a class="navbar-brand py-0" href="#"><img src="./src/img/logoIteso.png" alt="" style="height: 30px"></a>
+      <a class="navbar-brand py-0" href="../../"><img src="./src/img/logoIteso.png" alt="" style="height: 30px"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,13 +11,13 @@ document.querySelector('header').innerHTML = `
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="../../">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Profesores</a>
+            <a class="nav-link" href="../../profesores.html">Profesores</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Materias</a>
+            <a class="nav-link" href="../../materias.html">Materias</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#profileModal" href="#">Perfil</a>
