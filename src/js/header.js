@@ -76,6 +76,7 @@ document.querySelector('header').innerHTML = `
                         <!-- Login & close -->
                         <div class="form-group">
                             <button type="button" value="Login" data-dismiss="modal" class="btn btn-primary login_btn">Login</button>
+                            <button type="button" value="Admin" data-toggle="modal" href="#loginAdminModal" data-dismiss="modal" class="btn btn-success login_btn">Admin</button>
                             <button type="button" value="Close" data-dismiss="modal" class="btn btn-secondary login_btn">Cerrar</button>
                         </div>
                     </form>
@@ -144,5 +145,57 @@ document.querySelector('header').innerHTML = `
         </div>
     </div>
     <!-- End of Registry modal -->
+
+    <!--Admin Modal-->
+    <div id="loginAdminModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal header -->
+                <div class="modal-header">
+                    <h5>Entrar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        <!-- correo -->
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Correo</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-user-shield"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="emailLogin" placeholder="correo">
+                            </div> 
+                        </div>
+                        <!-- Contraseña -->
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-key"></i>
+                                    </span>
+                                </div>
+                                <input type="password" class="form-control" id="password" placeholder="contraseña">
+                            </div>
+                        </div>
+                        <!-- Login & close -->
+                        <div class="form-group">
+                            <button type="button" value="Login" data-dismiss="modal" class="btn btn-primary login_btn">Login</button>
+                            <button type="button" value="Close" data-dismiss="modal" class="btn btn-secondary login_btn">Cerrar</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <p mr-auto>Estas ingresando como administrador</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Admin modal-->
 
 `;
