@@ -18,6 +18,9 @@ document.querySelector('header').innerHTML = `
           <li class="nav-item">
             <a class="nav-link" href="#">Materias</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#profileModal" href="#">Perfil</a>
+          </li>
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item dropdown">
@@ -115,9 +118,34 @@ document.querySelector('header').innerHTML = `
                             <!-- Correo -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="emailRegistry" placeholder="Tu correo" required>
+                                    <input type="text" class="form-control" id="emailRegistry" placeholder="Tu correo @iteso.mx" required>
                                 </div>                                
                             </div>
+                            <!-- Carrera -->
+                            <div class="form-group row">                                
+                                <div class="col">
+                                    <input type="text" class="form-control" id="majorRegistry" placeholder="Carrera" required>
+                                </div>                                
+                            </div>
+                            <!-- Género -->
+                            <div class="form-check form-group rounded" style="border: solid; border-color: lightgrey; border-width: 1px;">
+                                <div class="row ml-1">
+                                    <div class="col">
+                                        <input type="radio" class="form-check-input" name="sex" id="female" value="option1" checked>
+                                        <label class="form-check-label" for="mujer">
+                                            Mujer
+                                        </label> 
+                                    </div>
+                                </div>
+                                <div class="row ml-1">
+                                    <div class="col">
+                                        <input type="radio" class="form-check-input" name="sex" id="male" value="option2">
+                                        <label class="form-check-label" for="hombre">
+                                            Hombre
+                                        </label> 
+                                    </div>
+                                </div>
+                            </div>            
                             <!-- Contraseña -->
                             <div class="form-group row">                                
                                 <div class="col">
@@ -197,5 +225,146 @@ document.querySelector('header').innerHTML = `
         </div>
     </div>
     <!--End of Admin modal-->
+
+    <!--Profile modal-->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h3 class="modal-title">Tu perfil</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col d-flex justify-content-center">
+                                <h3 class="userName my-5">John Doe</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm mb-3">
+                                <label for="email">Correo:</label>
+                            </div>
+                            <div class="col-sm">
+                                <input type="email" name="email" id="emailUser" readonly placeholder="johndoe@iteso.mx">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm mb-3">
+                                <label for="major">Carrera:</label>
+                            </div>
+                            <div class="col-sm">
+                                <input type="text" name="major" id="majorUser" readonly placeholder="Ing. en Sistemas">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm mb-3">
+                                <label for="sex">Género:</label>
+                            </div>
+                            <div class="col-sm mb-3">
+                                <input type="radio" class="form-check-input" name="sex" checked readonly>
+                                <div class="col col-sm-2">
+                                    <label for="sex"> Hombre </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" href="#editModal" data-dismiss="modal">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <p mr-auto>Ve tus comentarios <a class="registerLink" href="#" data-dismiss="modal">aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Profile modal-->
+
+    <!--Edit modal-->    
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title">Editar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
+                            <!-- Nombre y apellidos -->
+                            <div class="form-group row">                    
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="nombre" id="name" value="John" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="apellidos" id="lastName" value="Doe" required>
+                                </div>
+                            </div>
+                            <!-- Correo -->
+                            <div class="form-group row">                                
+                                <div class="col">
+                                    <input type="text" class="form-control" id="emailRegistry" value="Johndoe@iteso.mx" required>
+                                </div>                                
+                            </div>
+                            <!-- Carrera -->
+                            <div class="form-group row">                                
+                                <div class="col">
+                                    <input type="text" class="form-control" id="majorRegistry" value="Ing. en Sistemas" required>
+                                </div>                                
+                            </div>
+                            <!-- Género -->
+                            <div class="form-check form-group rounded" style="border: solid; border-color: lightgrey; border-width: 1px;">
+                                <div class="row ml-1">
+                                    <div class="col">
+                                        <input type="radio" class="form-check-input" name="sex" id="female" value="option1">
+                                        <label class="form-check-label" for="mujer">
+                                            Mujer
+                                        </label> 
+                                    </div>
+                                </div>
+                                <div class="row ml-1">
+                                    <div class="col">
+                                        <input type="radio" class="form-check-input" name="sex" id="male" value="option2" checked>
+                                        <label class="form-check-label" for="hombre">
+                                            Hombre
+                                        </label> 
+                                    </div>
+                                </div>
+                            </div>            
+                            <!-- Contraseña -->
+                            <div class="form-group row">                                
+                                <div class="col">
+                                    <input type="password" class="form-control" id="passwordRegistry" placeholder="Contraseña" name="up">
+                                </div>                                
+                            </div>
+                            <!-- Confirmar contraseña -->
+                            <div class="form-group row">                                
+                                <div class="col">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar contraseña" name="up2">
+                                </div>                                
+                            </div>      
+                            <!-- Registrarse & close -->
+                            <div class="form-group row">                                
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary" id="register">Guardar</button>
+                                    <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cerrar</button>
+                                </div>                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Edit modal-->
 
 `;
