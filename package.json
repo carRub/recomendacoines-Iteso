@@ -1,0 +1,22 @@
+{
+  "name": "recomendaciones-iteso",
+  "version": "1.0.0",
+  "description": "This is a website for rating classes and teachers in ITESO university. Made by Esteban Cervantes, Alexis Muñoz and Carlos Rubio for our Web Development class.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EstebanDworak/Recomendaciones-ITESO.git"
+  },
+  "author": "Esteban Dworak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EstebanDworak/Recomendaciones-ITESO/issues"
+  },
+  "homepage": "https://github.com/EstebanDworak/Recomendaciones-ITESO#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
