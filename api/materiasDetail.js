@@ -2,13 +2,12 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/", (req, res) => {
-  let profesorDetail = {
-    nombre: "Esteban Cervantes",
-    materias: ["Ética en la empresa", "Conocimiento y Cultura", "COE"],
-    calificacionTotal: 6,
-    puntualidad: 6,
-    conocimiento: 8,
-    claseDinamica: 4,
+  let materiaDetail = {
+    nombre: "Conocimiento y Cultura",
+    preofesores: ["Esteban Cervantes", "Carlos Rubio", "Alexis Muñoz"],
+    carga: 6,
+    programa: 6,
+    creditos: 8,
     comentarios: [
       {
         usuario: "Carlos Rubio",
@@ -28,7 +27,7 @@ router.get("/", (req, res) => {
     ]
   };
   res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(profesorDetail, null, 4));
+  res.end(JSON.stringify(materiaDetail, null, 4));
 });
 
 module.exports = router;

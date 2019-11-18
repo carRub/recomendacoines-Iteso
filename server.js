@@ -12,6 +12,10 @@ app.get('/', function(req, res){
     res.sendFile('index.html');
 }); 
 
+// Profesores.
 app.use('/api/profesores/', require('./api/profesores'))
 app.use('/api/profesoresDetail/', require('./api/profesoresDetail'))
+
+// Materias.
 app.use('/api/materias/', require('./api/materias'))
+app.use('/api/materiasDetail/', require('./api/materiasDetail'))
