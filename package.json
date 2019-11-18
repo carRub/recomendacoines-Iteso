@@ -4,7 +4,8 @@
   "description": "This is a website for rating classes and teachers in ITESO university. Made by Esteban Cervantes, Alexis Muñoz and Carlos Rubio for our Web Development class.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "startDev": "nodemon server",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
