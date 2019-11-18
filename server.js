@@ -13,3 +13,5 @@ app.get('/', function(req, res){
 }); 
 
 app.use('/api/profesores/', require('./api/profesores'))
+app.use('/api/profesoresDetail/', require('./api/profesoresDetail'))
+app.use('/api/materias/', require('./api/materias'))
