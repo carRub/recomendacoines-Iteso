@@ -1,8 +1,3 @@
-<<<<<<< HEAD:src/js/header.js
-document.title = "Recomendaciones ITESO"
-document.querySelector('head').innerHTML += '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
-document.querySelector('header').innerHTML = `
-=======
 document.title = "Recomendaciones ITESO";
 document.querySelector("head").innerHTML +=
   '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
@@ -18,7 +13,6 @@ if (req.status == 200) {
 }
 
 document.querySelector("header").innerHTML = `
->>>>>>> ca0127b59c054b0f34ebaf8c63e491b808d64d58:public/src/js/header.js
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgba(0, 0, 0, .5)">
       <a class="navbar-brand py-0" href="../../"><img src="./src/img/logoIteso.png" alt="" style="height: 30px"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -292,7 +286,7 @@ document.querySelector("header").innerHTML = `
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <p mr-auto>Ve tus comentarios a tus <a href="../../comentariosUsuarioProfes.html">profes</a> y <a href="../../comentariosUsuarioMaterias.html">materias</a></p>
+                    <p mr-auto>Ve tus comentarios <a class="registerLink" href="#" data-dismiss="modal">aquí</a></p>
                 </div>
             </div>
         </div>
@@ -377,9 +371,4 @@ document.querySelector("header").innerHTML = `
         </div>
     </div>
     <!--Edit modal-->
-<<<<<<< HEAD:src/js/header.js
 `;
-=======
-
-`;
->>>>>>> ca0127b59c054b0f34ebaf8c63e491b808d64d58:public/src/js/header.js
