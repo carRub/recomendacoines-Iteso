@@ -1,6 +1,24 @@
+<<<<<<< HEAD:src/js/header.js
 document.title = "Recomendaciones ITESO"
 document.querySelector('head').innerHTML += '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
 document.querySelector('header').innerHTML = `
+=======
+document.title = "Recomendaciones ITESO";
+document.querySelector("head").innerHTML +=
+  '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
+
+var req = new XMLHttpRequest();
+let perfil = {};
+req.open("GET", "http://localhost:3000/api/perfil", false);
+req.send(null);
+if (req.status == 200) {
+  perfil=JSON.parse(req.responseText);
+} else {
+  alert("Something went wrong :(");
+}
+
+document.querySelector("header").innerHTML = `
+>>>>>>> ca0127b59c054b0f34ebaf8c63e491b808d64d58:public/src/js/header.js
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgba(0, 0, 0, .5)">
       <a class="navbar-brand py-0" href="../../"><img src="./src/img/logoIteso.png" alt="" style="height: 30px"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -235,7 +253,7 @@ document.querySelector('header').innerHTML = `
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col d-flex justify-content-center">
-                                <h3 class="userName my-5">John Doe</h3>
+                                <h3 class="userName my-5">${perfil.nombre} ${perfil.apellido}</h3>
                             </div>
                         </div>
                         <div class="row">
@@ -243,7 +261,7 @@ document.querySelector('header').innerHTML = `
                                 <label for="email">Correo:</label>
                             </div>
                             <div class="col-sm">
-                                <input type="email" name="email" id="emailUser" readonly placeholder="johndoe@iteso.mx">
+                                <input type="email" name="email" id="emailUser" readonly placeholder="${perfil.correo}">
                             </div>
                         </div>
                         <div class="row">
@@ -251,7 +269,7 @@ document.querySelector('header').innerHTML = `
                                 <label for="major">Carrera:</label>
                             </div>
                             <div class="col-sm">
-                                <input type="text" name="major" id="majorUser" readonly placeholder="Ing. en Sistemas">
+                                <input type="text" name="major" id="majorUser" readonly placeholder="${perfil.carrera}">
                             </div>
                         </div>
                         <div class="row">
@@ -261,7 +279,7 @@ document.querySelector('header').innerHTML = `
                             <div class="col-sm mb-3">
                                 <input type="radio" class="form-check-input" name="sex" checked readonly>
                                 <div class="col col-sm-2">
-                                    <label for="sex"> Hombre </label>
+                                    <label for="sex"> ${perfil.sexo == 'Mujer' ? 'Mujer': 'Hombre'} </label>
                                 </div>
                             </div>
                         </div>
@@ -296,29 +314,29 @@ document.querySelector('header').innerHTML = `
                             <!-- Nombre y apellidos -->
                             <div class="form-group row">                    
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="nombre" id="name" value="John" required>
+                                    <input type="text" class="form-control" name="nombre" id="name" value="${perfil.nombre}" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="apellidos" id="lastName" value="Doe" required>
+                                    <input type="text" class="form-control" name="apellidos" id="lastName" value="${perfil.apellido}" required>
                                 </div>
                             </div>
                             <!-- Correo -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="emailRegistry" value="Johndoe@iteso.mx" required>
+                                    <input type="text" class="form-control" id="emailRegistry" value="${perfil.correo}" required>
                                 </div>                                
                             </div>
                             <!-- Carrera -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="majorRegistry" value="Ing. en Sistemas" required>
+                                    <input type="text" class="form-control" id="majorRegistry" value="${perfil.carrera}" required>
                                 </div>                                
                             </div>
                             <!-- Género -->
                             <div class="form-check form-group rounded" style="border: solid; border-color: lightgrey; border-width: 1px;">
                                 <div class="row ml-1">
                                     <div class="col">
-                                        <input type="radio" class="form-check-input" name="sex" id="female" value="option1">
+                                        <input type="radio" class="form-check-input" name="sex" id="female" value="option1" ${perfil.sexo == 'Mujer' ? 'checked': ''}>
                                         <label class="form-check-label" for="mujer">
                                             Mujer
                                         </label> 
@@ -326,7 +344,7 @@ document.querySelector('header').innerHTML = `
                                 </div>
                                 <div class="row ml-1">
                                     <div class="col">
-                                        <input type="radio" class="form-check-input" name="sex" id="male" value="option2" checked>
+                                        <input type="radio" class="form-check-input" name="sex" id="male" value="option2" ${perfil.sexo == 'Hombre' ? 'checked': ''}>
                                         <label class="form-check-label" for="hombre">
                                             Hombre
                                         </label> 
@@ -359,4 +377,9 @@ document.querySelector('header').innerHTML = `
         </div>
     </div>
     <!--Edit modal-->
+<<<<<<< HEAD:src/js/header.js
 `;
+=======
+
+`;
+>>>>>>> ca0127b59c054b0f34ebaf8c63e491b808d64d58:public/src/js/header.js

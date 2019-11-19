@@ -3,3 +3,6 @@
 This is a website for rating classes and teachers in ITESO university. Made by Esteban Cervantes, Alexis Muñoz and Carlos Rubio for our Web Development class.
 
 *For educational purposes only. We do not own any of the ITESO rights.*
+
+Link al video de descripción de las pantallas:
+https://youtu.be/U8-XfliTBrY
