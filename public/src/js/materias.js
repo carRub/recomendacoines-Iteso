@@ -39,7 +39,7 @@ let renderMaterias = (materias) => {
             </td>
             <td>${e.creditos}</td>
 
-            <td><a href="./profesorDetalle.html">Detalle</a></td>
+            <td><a href="./materiaDetalle.html">Detalle</a></td>
         </tr>
         `;//warning, success
         tbody.insertAdjacentHTML("beforeend", materia);
