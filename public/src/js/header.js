@@ -49,7 +49,6 @@ document.querySelector("header").innerHTML = `
           </ul>
       </div>
     </nav>
-
     <!--Login Modal-->
     <div id="loginModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -102,7 +101,6 @@ document.querySelector("header").innerHTML = `
         </div>
     </div>
     <!-- End of Login Modal-->
-
     <!-- Registry modal -->
     <div id="registryModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -177,7 +175,6 @@ document.querySelector("header").innerHTML = `
                                     <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cerrar</button>
                                 </div>                                
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -185,7 +182,6 @@ document.querySelector("header").innerHTML = `
         </div>
     </div>
     <!-- End of Registry modal -->
-
     <!--Admin Modal-->
     <div id="loginAdminModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -237,7 +233,6 @@ document.querySelector("header").innerHTML = `
         </div>
     </div>
     <!--End of Admin modal-->
-
     <!--Profile modal-->
     <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -290,7 +285,6 @@ document.querySelector("header").innerHTML = `
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <p mr-auto>Ve tus comentarios <a class="registerLink" href="#" data-dismiss="modal">aquí</a></p>
                 </div>
@@ -298,7 +292,6 @@ document.querySelector("header").innerHTML = `
         </div>
     </div>
     <!--Profile modal-->
-
     <!--Edit modal-->    
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -378,5 +371,4 @@ document.querySelector("header").innerHTML = `
         </div>
     </div>
     <!--Edit modal-->
-
 `;
