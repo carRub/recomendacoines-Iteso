@@ -1,9 +1,7 @@
-//let subjectDetail = document.getElementById("subjectDetail");
 let subjectSideBar = document.getElementById("subjectSideBar");
-let comments = document.getElementById("comments");
+let comments = document.getElementById("subjectComments");
 
 let init = () => {
-    console.log("materia Detalle");
     getDetalleMateria();
 }
 
@@ -20,7 +18,6 @@ function getDetalleMateria() {
 }
 
 function renderDetalle(detalle) {
-    console.log("renderDetalle");
 
     let cargaColor = "success";
     let programaColor = "danger";
