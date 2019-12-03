@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   let materiaDetail = {
     nombre: "Conocimiento y Cultura",
     profesores: ["Esteban Cervantes", "Carlos Rubio", "Alexis Muñoz"],
