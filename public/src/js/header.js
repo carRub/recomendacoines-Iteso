@@ -115,51 +115,34 @@ document.querySelector("header").innerHTML = `
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <form oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
+                        <form onsubmit="login2()" oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
                             <!-- Nombre y apellidos -->
                             <div class="form-group row">                    
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre o nombres" required>
+                                    <input type="text" class="form-control" name="nombre" id="nameRegister" placeholder="Nombre o nombres" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="apellidos" id="lastName" placeholder="Apellidos" required>
+                                    <input type="text" class="form-control" name="apellidos" id="lastNameRegister" placeholder="Apellidos" required>
                                 </div>
                             </div>
                             <!-- Correo -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="emailRegistry" placeholder="Tu correo @iteso.mx" required>
+                                    <input type="text" class="form-control" id="emailRegister" placeholder="Tu correo @iteso.mx" required>
                                 </div>                                
                             </div>
                             <!-- Carrera -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="majorRegistry" placeholder="Carrera" required>
+                                    <input type="text" class="form-control" id="majorRegister" placeholder="Carrera" required>
                                 </div>                                
                             </div>
                             <!-- Género -->
-                            <div class="form-check form-group rounded" style="border: solid; border-color: lightgrey; border-width: 1px;">
-                                <div class="row ml-1">
-                                    <div class="col">
-                                        <input type="radio" class="form-check-input" name="sex" id="female" value="option1" checked>
-                                        <label class="form-check-label" for="mujer">
-                                            Mujer
-                                        </label> 
-                                    </div>
-                                </div>
-                                <div class="row ml-1">
-                                    <div class="col">
-                                        <input type="radio" class="form-check-input" name="sex" id="male" value="option2">
-                                        <label class="form-check-label" for="hombre">
-                                            Hombre
-                                        </label> 
-                                    </div>
-                                </div>
-                            </div>            
+                                    
                             <!-- Contraseña -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="password" class="form-control" id="passwordRegistry" placeholder="Contraseña" name="up">
+                                    <input type="password" class="form-control" id="passwordRegister" placeholder="Contraseña" name="up">
                                 </div>                                
                             </div>
                             <!-- Confirmar contraseña -->
@@ -171,7 +154,8 @@ document.querySelector("header").innerHTML = `
                             <!-- Registrarse & close -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <button type="submit" class="btn btn-primary" id="register">Registrarse</button>
+                                    
+                                    <button type="send" value="Login" class="btn btn-primary login_btn" >Registrarse</button>
                                     <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cerrar</button>
                                 </div>                                
                             </div>
@@ -372,6 +356,39 @@ document.querySelector("header").innerHTML = `
     </div>
     <!--Edit modal-->
 `;
+
+
+function login2(){
+
+    fetch('api/register', {
+        method: 'post',
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: 
+        'nombre='+document.getElementById('nameRegister').value+
+        '&apellido='+document.getElementById('lastNameRegister').value+
+        '&correo='+document.getElementById('emailRegister').value+
+        '&carrera='+document.getElementById('majorRegister').value
+        +'&password='+document.getElementById('passwordRegister').value
+      })
+      .then(
+        function(response) {
+          if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+              response.status);
+            return;
+          }
+    
+          // Examine the text in the response
+          response.json().then(function(data) {
+            alert("Usuario creado con éxito")
+          });
+        }
+      )
+      .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+      });}
 
 
 function login(){
