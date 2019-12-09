@@ -7,7 +7,6 @@ let Usuario = require("../public/src/js/schemas/userSchema");
 var jwt = require("jsonwebtoken");
 
 router.post("/", (req, res) => {
-  console.log(req.body)
 
   const post = new Usuario({ 
     
