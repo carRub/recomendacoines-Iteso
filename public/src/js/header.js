@@ -317,7 +317,7 @@ document.querySelector("header").innerHTML = `
                             <!-- Correo -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="emailRegistry" value="${perfil.correo}" required>
+                                    <input type="text" class="form-control" id="emailRegistry" value="${perfil.correo}" required disabled>
                                 </div>                                
                             </div>
                             <!-- Carrera -->

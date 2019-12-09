@@ -9,6 +9,7 @@ let profesorSchema = mongoose.Schema({
         max: 10,
         required: true
     },
+    rol: String,
 });
 
 module.exports = mongoose.model('Profesor', profesorSchema);

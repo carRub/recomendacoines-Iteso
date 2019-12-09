@@ -21,5 +21,4 @@ router.get('/', (req, res) => {
   res.end(JSON.stringify(profesores, null, 4));
 })
 
-
 module.exports = router

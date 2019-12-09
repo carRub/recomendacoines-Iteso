@@ -15,9 +15,9 @@ router.get('/', (req, res) => {
     creditos: 12
   },
   {
-    nombre: "	Contexto Historico y Social",
+    nombre: "Conocimiento y cultura",
     descripcion: "En esta materia trataremos de...",
-    calificacion: 9,
+    calificacion: 8,
     creditos: 8
   }];
   res.setHeader('Content-Type', 'application/json');
