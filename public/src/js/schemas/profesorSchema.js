@@ -9,6 +9,7 @@ let profesorSchema = mongoose.Schema({
         max: 10,
         required: true
     },
+
     puntualidad: {
         type: Number,
         min: 0,

@@ -5,6 +5,7 @@ let materiaSchema = require("../public/src/js/schemas/materiaSchema.js");
 let Materia = mongoose.model("Materia", materiaSchema.schema); //model de materia
 var jwt = require("jsonwebtoken");
 
+
 router.get("/", (req, res) => {
   try {
     var decoded = jwt.verify(req.cookies.token, "shhhhh");
