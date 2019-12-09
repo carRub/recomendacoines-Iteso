@@ -2,6 +2,7 @@
 let express = require('express');
 let app = express();
 var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 
 //url to our db on Atlas
 let connectionString = 'mongodb+srv://dbUser:Recomendaciones12@recomendaciones-iteso-akupu.mongodb.net/test?retryWrites=true&w=majority'
@@ -31,6 +32,9 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
   })); 
+  app.use(cookieParser())
+
+
 var port = process.env.port || 3000;
 
 app.listen(port);
