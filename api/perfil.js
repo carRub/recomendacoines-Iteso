@@ -1,123 +1,24 @@
-var express = require('express');
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
+let mongoose = require("mongoose");
+let userSchema = require("../public/src/js/schemas/userSchema.js");
+let User = mongoose.model("Usuario", userSchema.schema); //model de materia
+let jwt = require("jsonwebtoken");
 
-//materias, GET get('/comentarios/materias')
-let subjectComments = [
-  {
-    nombre: "POO",
-    comentario: 
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
-  },
 
-  {
-    nombre: "COE",
-    comentario: 
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
-  },
-
-  {
-    nombre: "Conocimiento y cultura",
-    comentario: 
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
+router.get("/", (req, res) => {
+  try {
+    let decoded = jwt.verify(req.cookies.token, "shhhhh");
+    res.setHeader("Content-Type", "application/json");
+    User.findOne({correo: decoded.correo})
+      .lean()
+      .exec((err, usuario) => {
+        console.log(usuario);
+        return res.end(JSON.stringify(usuario));
+      });
+  } catch (e) {
+    res.send({ error: "wrong login" });
   }
-];
+});
 
-router.get('/', (req, res) => {
-  let perfil = {
-      nombre: "Esteban",
-      apellido: "Cervantes",
-      correo: 'is713782@iteso.mx',
-      carrera: 'Ing. en Sistemas',
-      sexo: 'Hombre',
-      contraseña: 'Password123',
-      rol: "usuario"
-  };
-  
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(perfil, null, 4));
-})
-
-router.get('/comentarios/materias', (req, res) => {
-  /*let materias = [
-    {
-      nombre: "POO",
-      comentario: 
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
-    },
-
-    {
-      nombre: "COE",
-      comentario: 
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
-    },
-
-    {
-      nombre: "Conocimiento y cultura",
-      comentario: 
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
-    }
-  ];*/
-
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(subjectComments, null, 4));
-  //res.end(JSON.parse(subjectComments));
-
-})
-
-// router.post('/comentarios/materias', (req, res) => {
-//   /*let materias = [
-//     {
-//       nombre: "POO",
-//       comentario: 
-//         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
-//     },
-
-//     {
-//       nombre: "COE",
-//       comentario: 
-//         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
-//     },
-
-//     {
-//       nombre: "Conocimiento y cultura",
-//       comentario: 
-//         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
-//     }
-//   ];*/
-
-//   subjectComments.push(req);
-  
-//   console.log(typeof req + " hol");
-//   //res.setHeader('Content-Type', 'application/json');
-//   //res.send(JSON.stringify(subjectComments, null, 4));
-//   //res.send(JSON.parse(subjectComments));
-//   res.send("hello");
-// })
-
-router.get('/comentarios/profesores', (req, res) => {
-  let profesores = [
-    {
-      nombre: "Carlos Rubio",
-      comentario: 
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
-    },
-
-    {
-      nombre: "Alexis Muñoz",
-      comentario: 
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
-    },
-
-    {
-      nombre: "Esteban Cervantes",
-      comentario: 
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
-    }
-  ];
-
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(profesores, null, 4));
-
-})
-
-module.exports = router
+module.exports = router;

@@ -251,17 +251,6 @@ document.querySelector("header").innerHTML = `
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm mb-3">
-                                <label for="sex">Género:</label>
-                            </div>
-                            <div class="col-sm mb-3">
-                                <input type="radio" class="form-check-input" name="sex" checked readonly>
-                                <div class="col col-sm-2">
-                                    <label for="sex"> ${perfil.sexo == 'Mujer' ? 'Mujer': 'Hombre'} </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-sm">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" href="#editModal" data-dismiss="modal">Editar</button>
