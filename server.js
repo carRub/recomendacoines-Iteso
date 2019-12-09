@@ -35,9 +35,11 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(cookieParser())
 
 
-var port = process.env.port || 3000;
+var port = process.env.PORT  || 3000;
 
-app.listen(port);
+app.listen(process.env.PORT || 3000)
+
+
 
 app.get('/', function(req, res){
     res.sendFile('index.html');
