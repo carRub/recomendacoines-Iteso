@@ -1,28 +1,23 @@
-var express = require('express')
-var router = express.Router()
-
-router.get('/', (req, res) => {
-  let materias = [{
-      nombre: "Programación estructurada",
-      descripcion: "Esta materia se interesa en explicar...",
-      calificacion: 1,
-      creditos: 8
-  },
-  {
-    nombre: "Ética en la Empresa",
-    descripcion: "Se explicaran los temas de...",
-    calificacion: 6,
-    creditos: 12
-  },
-  {
-    nombre: "Conocimiento y cultura",
-    descripcion: "En esta materia trataremos de...",
-    calificacion: 8,
-    creditos: 8
-  }];
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(materias, null, 4));
-})
+var express = require("express");
+var router = express.Router();
+let mongoose = require("mongoose");
+let materiaSchema = require("../public/src/js/schemas/materiaSchema.js");
+let Materia = mongoose.model("Materia", materiaSchema.schema); //model de materia
+var jwt = require("jsonwebtoken");
 
 
-module.exports = router
+router.get("/", (req, res) => {
+  try {
+    var decoded = jwt.verify(req.cookies.token, "shhhhh");
+    res.setHeader("Content-Type", "application/json");
+    Materia.find({})
+      .lean()
+      .exec((err, materias) => {
+        return res.end(JSON.stringify(materias, null, 4));
+      });
+  } catch (e) {
+    res.send({ error: "wrong login" });
+  }
+});
+
+module.exports = router;

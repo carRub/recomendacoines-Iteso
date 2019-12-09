@@ -1,38 +1,57 @@
 let tbody = document.getElementById("tbody");
 
-let init = ()=> {
-    getMaterias();
+let init = () => {
+  getMaterias();
+};
+
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2)
+    return parts
+      .pop()
+      .split(";")
+      .shift();
 }
 
 let getMaterias = () => {
-    var req = new XMLHttpRequest();
-    req.open('GET', 'http://localhost:3000/api/materias', false); 
-    req.send(null);
-    if (req.status == 200){
-        console.log(req.responseText)
-        renderMaterias(JSON.parse(req.responseText));
-    }else{
-        alert("Something went wrong :(");
-    }
-}
+  var req = new XMLHttpRequest();
+  req.open("GET", "/api/materias", false);
+  if (getCookie("token")) {
+    req.send();
 
-let renderMaterias = (materias) => {
-    materias.forEach((e, i) => {
-        let materia = `                        
+    if (req.status == 200) {
+      if (JSON.parse(req.responseText).error == "wrong login") {
+        alert("Favor de inicar Sesión");
+        window.location.href = "../";
+      }
+      renderMaterias(JSON.parse(req.responseText));
+    } else {
+      alert("Something went wrong :(");
+    }
+  } else {
+    alert("Favor de inicar Sesión");
+    window.location.href = "../";
+  }
+};
+
+let renderMaterias = materias => {
+  materias.forEach((e, i) => {
+    let materia = `                        
         <tr>
             <th scope="row">${i + 1}</th>
             <td>${e.nombre}</td>
-            <td>${e.descripcion}</td>
+            <td>${e.descripcion.substring(0, 55) + "..."}</td>
 
-            `
+            `;
 
-        let badgeColor = "danger";
-        if(e.calificacion > 5 && e.calificacion < 7){
-            badgeColor = "warning";
-        }else if(e.calificacion >= 7) {
-            badgeColor = "success";
-        }
-        materia += `
+    let badgeColor = "danger";
+    if (e.calificacion > 5 && e.calificacion < 7) {
+      badgeColor = "warning";
+    } else if (e.calificacion >= 7) {
+      badgeColor = "success";
+    }
+    materia += `
             <td>
                 <span class="badge badge-${badgeColor}">${e.calificacion}/10</span>
 
@@ -41,10 +60,10 @@ let renderMaterias = (materias) => {
 
             <td><a href="./materiaDetalle.html">Detalle</a></td>
         </tr>
-        `;//warning, success
-        tbody.insertAdjacentHTML("beforeend", materia);
-        console.log(e);
-    })
-}
+        `; //warning, success
+    tbody.insertAdjacentHTML("beforeend", materia);
+    console.log(e);
+  });
+};
 
 init();

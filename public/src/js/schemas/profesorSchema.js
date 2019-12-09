@@ -9,7 +9,30 @@ let profesorSchema = mongoose.Schema({
         max: 10,
         required: true
     },
-    rol: String,
+
+    puntualidad: {
+        type: Number,
+        min: 0,
+        max: 10,
+        required: true
+    },
+    conocimiento: {
+        type: Number,
+        min: 0,
+        max: 10,
+        required: true
+    },
+    claseDinamica : {
+        type: Number,
+        min: 0,
+        max: 10,
+        required: true
+    },
+    votaciones: {
+        type: Number,
+        min: 0,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Profesor', profesorSchema);

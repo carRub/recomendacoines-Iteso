@@ -1,6 +1,8 @@
 "use sctrict"
 let express = require('express');
 let app = express();
+var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 
 //url to our db on Atlas
 let connectionString = 'mongodb+srv://dbUser:Recomendaciones12@recomendaciones-iteso-akupu.mongodb.net/test?retryWrites=true&w=majority'
@@ -8,7 +10,7 @@ let connectionString = 'mongodb+srv://dbUser:Recomendaciones12@recomendaciones-i
 //setting up mongoose and the schemas
 let mongoose = require('mongoose');
 mongoose.connect(connectionString, {useNewUrlParser: true});
-let materiaSchema = require('./public/src/js/schemas/materiasSchema.js');
+let materiaSchema = require('./public/src/js/schemas/materiaSchema.js');
 let profesorSchema = require('./public/src/js/schemas/profesorSchema.js');
 
 //creating and validating connection
@@ -26,6 +28,12 @@ db.once('open', function() {
 
 // Static Website.
 app.use(express.static('public')); 
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+  })); 
+app.use(cookieParser())
+
 
 var port = process.env.port || 3000;
 
@@ -47,5 +55,9 @@ app.use('/api/materiasDetail/', require('./api/materiasDetail'))
 
 // Perfil.
 app.use('/api/perfil/', require('./api/perfil'))
+
+
+// Login.
+app.use('/api/login/', require('./api/login'))
 
 
