@@ -13,7 +13,7 @@ let init = () => {
 
 function getDetalleMateria() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:3000/api/materiasDetail', false); 
+    xhr.open('GET', './materiasDetail', false); 
     xhr.send(null);
     if (xhr.status == 200){
         console.log(xhr.responseText)
@@ -28,7 +28,7 @@ function getDetalleMateria() {
 //delete http request
 function deleteMateria() {
     var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', 'http://localhost:3000/api/materias', false);
+    xhr.open('DELETE', './api/materias', false);
     xhr.send(null);
     if (xhr.status == 200){
         console.log("subject deleted successfully");

@@ -4,7 +4,7 @@ document.querySelector("head").innerHTML +=
 
 var req = new XMLHttpRequest();
 let perfil = {};
-req.open("GET", "http://localhost:3000/api/perfil", false);
+req.open("GET", "./api/perfil", false);
 req.send(null);
 if (req.status == 200) {
   perfil=JSON.parse(req.responseText);

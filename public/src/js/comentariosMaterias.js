@@ -8,7 +8,7 @@ let init = () => {
 function getComentariosMateria() {
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET', 'http://localhost:3000/api/perfil', false); 
+    xhr.open('GET', './api/perfil', false); 
     xhr.send(null);
     if (xhr.status == 200){
         renderProfile(JSON.parse(xhr.responseText));
@@ -16,7 +16,7 @@ function getComentariosMateria() {
         alert("Something went wrong :(");
     }
 
-    xhr.open('GET', 'http://localhost:3000/api/perfil/comentarios/materias', false); 
+    xhr.open('GET', './api/perfil/comentarios/materias', false); 
     xhr.send(null);
     if (xhr.status == 200){
         renderComments(JSON.parse(xhr.responseText));

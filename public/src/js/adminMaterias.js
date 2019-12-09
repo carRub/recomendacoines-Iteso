@@ -6,7 +6,7 @@ let init = ()=> {
 
 let getMaterias = () => {
     var req = new XMLHttpRequest();
-    req.open('GET', 'http://localhost:3000/api/materias', false); 
+    req.open('GET', './api/materias', false); 
     req.send(null);
     if (req.status == 200){
         console.log(req.responseText)
