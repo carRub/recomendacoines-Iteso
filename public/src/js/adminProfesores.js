@@ -42,11 +42,34 @@ let renderProfesores = (profesores) => {
 
             </td>
             <td><a href="./adminProfesorDetalle.html">Detalle</a></td>
+            <td>
+                <button class="btn" id=${e._id} onclick="deleteProfesor('${e._id}')"><i class="fa fa-trash"></i></button>
+            </td>
         </tr>
         `;//warning, success
         tbody.insertAdjacentHTML("beforeend", profesor);
         console.log(e);
-    })
+    });
 }
+
+
+//delete http request
+function deleteProfesor(detalle) {
+    console.log(detalle);
+    let jsonObj = {};
+    jsonObj._id = detalle;
+    console.log("delete profesor");
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', './api/profesores', false);
+    xhr.send(jsonObj);
+    if (xhr.status == 200){
+        console.log("teacher deleted successfully");
+        console.log(xhr.response);
+        //getDetalleProfesor();
+        //refresh page
+    }
+
+}
+
 
 init();
