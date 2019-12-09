@@ -26,6 +26,11 @@ let profesorSchema = mongoose.Schema({
         min: 0,
         max: 10,
         required: true
+    },
+    votaciones: {
+        type: Number,
+        min: 0,
+        required: true
     }
 });
 

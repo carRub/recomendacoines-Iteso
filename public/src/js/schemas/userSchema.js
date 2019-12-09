@@ -6,7 +6,7 @@ let userSchema = mongoose.Schema({
   correo: String, 
   carrera: String, 
   contraseña: String, 
-  rol: Boolean, 
+  admin: Boolean, 
 
 });
 
