@@ -4,13 +4,22 @@ document.querySelector("head").innerHTML +=
 
 var req = new XMLHttpRequest();
 let perfil = {};
-req.open("GET", "http://localhost:3000/api/perfil", false);
+req.open("GET", "./api/perfil", false);
 req.send(null);
 if (req.status == 200) {
     perfil = JSON.parse(req.responseText);
 } else {
     alert("Something went wrong :(");
 }
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2)
+      return parts
+        .pop()
+        .split(";")
+        .shift();
+  }
 
 document.querySelector("header").innerHTML = `
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgba(0, 0, 0, .5)">
@@ -40,11 +49,20 @@ document.querySelector("header").innerHTML = `
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-graduate" style="font-size: 20px;"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                aria-labelledby="navbarDropdownMenuLink-333" style=" background-color: rgba(0, 0, 0, .5);">
-                <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#loginModal" href="#">Entrar</a>
-                <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#registryModal" href="#">Registrarse</a>
-              </div>
+              ${!getCookie("token")?
+              `<div class="dropdown-menu dropdown-menu-right dropdown-default"
+              aria-labelledby="navbarDropdownMenuLink-333" style=" background-color: rgba(0, 0, 0, .5);">
+              <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#loginModal" href="#">Entrar</a>
+              <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#registryModal" href="#">Registrarse</a>
+            </div>`
+              :
+              `<div class="dropdown-menu dropdown-menu-right dropdown-default"
+              aria-labelledby="navbarDropdownMenuLink-333" style=" background-color: rgba(0, 0, 0, .5);">
+              <a class="dropdown-item userNavBar" href="#" onClick="closeSession()">Cerrar Sesión</a>
+              
+            </div>`
+            }
+             
             </li>
           </ul>
       </div>
@@ -361,6 +379,7 @@ function login2() {
 }
 
 
+
 function login() {
     console.log(document.getElementById('emailLogin').value)
     fetch('api/login', {
@@ -384,6 +403,7 @@ function login() {
                     if (data.token) {
                         document.cookie = "token=" + data.token;
                         $('#loginModal').modal('hide');
+
 
                     } else {
                         alert("Usuario o contraseña incorrecta")
@@ -430,4 +450,13 @@ function updateProfile() {
         .catch(function (err) {
             console.log('Fetch Error :-S', err);
         });
+}
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=0'
+}
+function closeSession(){
+
+    eraseCookie('token')
+    window.location.href = "../";
+
 }

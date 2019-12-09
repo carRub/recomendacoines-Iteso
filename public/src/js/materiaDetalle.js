@@ -7,7 +7,7 @@ let init = () => {
 
 function getDetalleMateria() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:3000/api/materiasDetail', false); 
+    xhr.open('GET', './api/materiasDetail', false); 
     xhr.send(null);
     if (xhr.status == 200){
         console.log(xhr.responseText)

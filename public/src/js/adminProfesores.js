@@ -6,7 +6,7 @@ let init = ()=> {
 
 let getProfesores = () => {
     var req = new XMLHttpRequest();
-    req.open('GET', 'http://localhost:3000/api/profesores', false); 
+    req.open('GET', './api/profesores', false); 
     req.send(null);
     if (req.status == 200){
         renderProfesores(JSON.parse(req.responseText));

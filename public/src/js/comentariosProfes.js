@@ -8,7 +8,7 @@ let init = () => {
 function getComentariosProfesor() {
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET', 'http://localhost:3000/api/perfil', false); 
+    xhr.open('GET', './api/perfil', false); 
     xhr.send(null);
     if (xhr.status == 200){
 
@@ -17,7 +17,7 @@ function getComentariosProfesor() {
         alert("Something went wrong :(");
     }
 
-    xhr.open('GET', 'http://localhost:3000/api/perfil/comentarios/profesores', false); 
+    xhr.open('GET', './api/perfil/comentarios/profesores', false); 
     xhr.send(null);
     if (xhr.status == 200){
         renderComments(JSON.parse(xhr.responseText));
