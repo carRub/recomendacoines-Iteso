@@ -9,7 +9,6 @@ let getMaterias = () => {
     req.open('GET', 'http://localhost:3000/api/materias', false); 
     req.send(null);
     if (req.status == 200){
-        console.log(req.responseText)
         renderMaterias(JSON.parse(req.responseText));
     }else{
         alert("Something went wrong :(");
@@ -22,7 +21,7 @@ let renderMaterias = (materias) => {
         <tr>
             <th scope="row">${i + 1}</th>
             <td>${e.nombre}</td>
-            <td>${e.descripcion}</td>
+            <td>${e.descripcion.substring(0, 55) + '...'}</td>
 
             `
 
