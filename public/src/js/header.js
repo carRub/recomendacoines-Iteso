@@ -11,6 +11,15 @@ if (req.status == 200) {
 } else {
   alert("Something went wrong :(");
 }
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2)
+      return parts
+        .pop()
+        .split(";")
+        .shift();
+  }
 
 document.querySelector("header").innerHTML = `
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgba(0, 0, 0, .5)">
@@ -40,11 +49,20 @@ document.querySelector("header").innerHTML = `
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-graduate" style="font-size: 20px;"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                aria-labelledby="navbarDropdownMenuLink-333" style=" background-color: rgba(0, 0, 0, .5);">
-                <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#loginModal" href="#">Entrar</a>
-                <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#registryModal" href="#">Registrarse</a>
-              </div>
+              ${!getCookie("token")?
+              `<div class="dropdown-menu dropdown-menu-right dropdown-default"
+              aria-labelledby="navbarDropdownMenuLink-333" style=" background-color: rgba(0, 0, 0, .5);">
+              <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#loginModal" href="#">Entrar</a>
+              <a class="dropdown-item userNavBar" data-toggle="modal" data-target="#registryModal" href="#">Registrarse</a>
+            </div>`
+              :
+              `<div class="dropdown-menu dropdown-menu-right dropdown-default"
+              aria-labelledby="navbarDropdownMenuLink-333" style=" background-color: rgba(0, 0, 0, .5);">
+              <a class="dropdown-item userNavBar" href="#" onClick="closeSession()">Cerrar Sesión</a>
+              
+            </div>`
+            }
+             
             </li>
           </ul>
       </div>
@@ -383,6 +401,8 @@ function login2(){
           // Examine the text in the response
           response.json().then(function(data) {
             alert("Usuario creado con éxito")
+            window.location.href = "../";
+
           });
         }
       )
@@ -414,6 +434,8 @@ function login(){
             if(data.token){
                 document.cookie = "token="+data.token;
                 $('#loginModal').modal('hide');
+                window.location.href = "../";
+
 
             }else{
                 alert("Usuario o contraseña incorrecta")
@@ -424,4 +446,13 @@ function login(){
       .catch(function(err) {
         console.log('Fetch Error :-S', err);
       });
+}
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=0'
+}
+function closeSession(){
+
+    eraseCookie('token')
+    window.location.href = "../";
+
 }
