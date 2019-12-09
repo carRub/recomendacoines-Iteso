@@ -40,11 +40,44 @@ let renderMaterias = (materias) => {
             <td>${e.creditos}</td>
             
             <td><a href="./adminMateriaDetalle.html">Detalle</a></td>
+            <td>
+                <button class="btn" id=${e._id} onclick="deleteMateria('${e._id}')"><i class="fa fa-trash"></i></button>
+            </td>
         </tr>
         `;//warning, success
         tbody.insertAdjacentHTML("beforeend", materia);
         console.log(e);
     })
+}
+
+function deleteMateria(detalle) {
+    fetch("api/materias", {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body:
+          "id="+detalle
+      })
+        .then(function(response) {
+          if (response.status !== 200) {
+            alert(
+              "Looks like there was a problem. Status Code: " + response.status
+            );
+            return;
+          }
+    
+          // Examine the text in the response
+          response.text().then(function(data) {
+            
+            alert('correcto!')
+            location.reload();
+
+          });
+        })
+        .catch(function(err) {
+          console.log("Fetch Error :-S", err);
+        });
 }
 
 init();

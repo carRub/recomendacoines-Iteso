@@ -55,19 +55,47 @@ let renderProfesores = (profesores) => {
 
 //delete http request
 function deleteProfesor(detalle) {
-    console.log(detalle);
-    let jsonObj = {};
-    jsonObj._id = detalle;
-    console.log("delete profesor");
-    var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', './api/profesores', false);
-    xhr.send(jsonObj);
-    if (xhr.status == 200){
-        console.log("teacher deleted successfully");
-        console.log(xhr.response);
-        //getDetalleProfesor();
-        //refresh page
-    }
+    // console.log(detalle);
+    // let jsonObj = {};
+    // jsonObj._id = detalle;
+    // console.log("delete profesor");
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('DELETE', './api/profesores', false);
+    // xhr.send(jsonObj);
+    // if (xhr.status == 200){
+    //     console.log("teacher deleted successfully");
+    //     console.log(xhr.response);
+    //     //getDetalleProfesor();
+    //     //refresh page
+    // }
+
+    fetch("api/profesores", {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body:
+          "id="+detalle
+      })
+        .then(function(response) {
+          if (response.status !== 200) {
+            alert(
+              "Looks like there was a problem. Status Code: " + response.status
+            );
+            return;
+          }
+    
+          // Examine the text in the response
+          response.text().then(function(data) {
+            
+            alert('correcto!')
+            location.reload();
+
+          });
+        })
+        .catch(function(err) {
+          console.log("Fetch Error :-S", err);
+        });
 
 }
 
