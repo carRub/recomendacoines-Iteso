@@ -8,7 +8,7 @@ let connectionString = 'mongodb+srv://dbUser:Recomendaciones12@recomendaciones-i
 //setting up mongoose and the schemas
 let mongoose = require('mongoose');
 mongoose.connect(connectionString, {useNewUrlParser: true});
-let materiaSchema = require('./public/src/js/schemas/materiasSchema.js');
+let materiaSchema = require('./public/src/js/schemas/materiaSchema.js');
 let profesorSchema = require('./public/src/js/schemas/profesorSchema.js');
 
 //creating and validating connection
