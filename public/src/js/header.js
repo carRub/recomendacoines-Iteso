@@ -1,15 +1,15 @@
 document.title = "Recomendaciones ITESO";
 document.querySelector("head").innerHTML +=
-  '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
+    '<link rel="stylesheet" type="text/css" href="../src/css/header.css">';
 
 var req = new XMLHttpRequest();
 let perfil = {};
 req.open("GET", "http://localhost:3000/api/perfil", false);
 req.send(null);
 if (req.status == 200) {
-  perfil=JSON.parse(req.responseText);
+    perfil = JSON.parse(req.responseText);
 } else {
-  alert("Something went wrong :(");
+    alert("Something went wrong :(");
 }
 
 document.querySelector("header").innerHTML = `
@@ -281,59 +281,40 @@ document.querySelector("header").innerHTML = `
                             <!-- Nombre y apellidos -->
                             <div class="form-group row">                    
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="nombre" id="name" value="${perfil.nombre}" required>
+                                    <input type="text" class="form-control" name="nombreEdit" id="nombreEdit" value="${perfil.nombre}" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="apellidos" id="lastName" value="${perfil.apellido}" required>
+                                    <input type="text" class="form-control" name="apellidoEdit" id="apellidoEdit" value="${perfil.apellido}" required>
                                 </div>
                             </div>
                             <!-- Correo -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="emailRegistry" value="${perfil.correo}" required disabled>
+                                    <input type="text" class="form-control" id="emailEdit" value="${perfil.correo}" required disabled>
                                 </div>                                
                             </div>
                             <!-- Carrera -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="text" class="form-control" id="majorRegistry" value="${perfil.carrera}" required>
+                                    <input type="text" class="form-control" id="carreraEdit" value="${perfil.carrera}" required>
                                 </div>                                
-                            </div>
-                            <!-- Género -->
-                            <div class="form-check form-group rounded" style="border: solid; border-color: lightgrey; border-width: 1px;">
-                                <div class="row ml-1">
-                                    <div class="col">
-                                        <input type="radio" class="form-check-input" name="sex" id="female" value="option1" ${perfil.sexo == 'Mujer' ? 'checked': ''}>
-                                        <label class="form-check-label" for="mujer">
-                                            Mujer
-                                        </label> 
-                                    </div>
-                                </div>
-                                <div class="row ml-1">
-                                    <div class="col">
-                                        <input type="radio" class="form-check-input" name="sex" id="male" value="option2" ${perfil.sexo == 'Hombre' ? 'checked': ''}>
-                                        <label class="form-check-label" for="hombre">
-                                            Hombre
-                                        </label> 
-                                    </div>
-                                </div>
-                            </div>            
+                            </div>         
                             <!-- Contraseña -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="password" class="form-control" id="passwordRegistry" placeholder="Contraseña" name="up">
+                                    <input type="password" class="form-control" id="passwordEdit" placeholder="Contraseña" name="up" value="${perfil.contraseña}" required>
                                 </div>                                
                             </div>
                             <!-- Confirmar contraseña -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar contraseña" name="up2">
+                                    <input type="password" class="form-control" id="confirmPasswordEdit" placeholder="Confirmar contraseña" name="up2" value="${perfil.contraseña}" required>
                                 </div>                                
                             </div>      
                             <!-- Registrarse & close -->
                             <div class="form-group row">                                
                                 <div class="col">
-                                    <button type="submit" class="btn btn-primary" id="register">Guardar</button>
+                                    <button type="submit" class="btn btn-primary" id="edit" onClick="updateProfile()">Guardar</button>
                                     <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cerrar</button>
                                 </div>                                
                             </div>
@@ -347,70 +328,106 @@ document.querySelector("header").innerHTML = `
 `;
 
 
-function login2(){
+function login2() {
 
     fetch('api/register', {
         method: 'post',
         headers: {
-          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: 
-        'nombre='+document.getElementById('nameRegister').value+
-        '&apellido='+document.getElementById('lastNameRegister').value+
-        '&correo='+document.getElementById('emailRegister').value+
-        '&carrera='+document.getElementById('majorRegister').value
-        +'&password='+document.getElementById('passwordRegister').value
-      })
-      .then(
-        function(response) {
-          if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
-            return;
-          }
-    
-          // Examine the text in the response
-          response.json().then(function(data) {
-            alert("Usuario creado con éxito")
-          });
-        }
-      )
-      .catch(function(err) {
-        console.log('Fetch Error :-S', err);
-      });}
+        body:
+            'nombre=' + document.getElementById('nameRegister').value +
+            '&apellido=' + document.getElementById('lastNameRegister').value +
+            '&carrera=' + document.getElementById('majorRegister').value
+            + '&password=' + document.getElementById('passwordRegister').value
+    })
+        .then(
+            function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    return;
+                }
+
+                // Examine the text in the response
+                response.json().then(function (data) {
+                    alert("Usuario modificado con éxito")
+                });
+            }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+}
 
 
-function login(){
+function login() {
     console.log(document.getElementById('emailLogin').value)
     fetch('api/login', {
         method: 'post',
         headers: {
-          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        body: 'email='+document.getElementById('emailLogin').value+'&password='+document.getElementById('passwordLogin').value
-      })
-      .then(
-        function(response) {
-          if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
-            return;
-          }
-    
-          // Examine the text in the response
-          response.json().then(function(data) {
-            console.log(data);
-            if(data.token){
-                document.cookie = "token="+data.token;
-                $('#loginModal').modal('hide');
+        body: 'email=' + document.getElementById('emailLogin').value + '&password=' + document.getElementById('passwordLogin').value
+    })
+        .then(
+            function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    return;
+                }
 
-            }else{
-                alert("Usuario o contraseña incorrecta")
+                // Examine the text in the response
+                response.json().then(function (data) {
+                    console.log(data);
+                    if (data.token) {
+                        document.cookie = "token=" + data.token;
+                        $('#loginModal').modal('hide');
+
+                    } else {
+                        alert("Usuario o contraseña incorrecta")
+                    }
+                });
             }
-          });
-        }
-      )
-      .catch(function(err) {
-        console.log('Fetch Error :-S', err);
-      });
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+}
+
+function updateProfile() {
+    if(document.getElementById('passwordEdit').value !== document.getElementById('confirmPasswordEdit').value
+    || document.getElementById('passwordEdit').value <= 0){
+        return false;
+    }
+
+    fetch('api/perfil', {
+        method: 'put',
+        headers: {
+            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body:
+            'nombre=' + document.getElementById('nombreEdit').value +
+            '&apellido=' + document.getElementById('apellidoEdit').value +
+            '&carrera=' + document.getElementById('carreraEdit').value
+            + '&password=' + document.getElementById('passwordEdit').value
+    })
+        .then(
+            function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    return;
+                }
+
+                // Examine the text in the response
+                response.text().then(function (data) {
+                    alert(data)
+                });
+            }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
 }
