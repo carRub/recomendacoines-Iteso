@@ -46,12 +46,12 @@ function renderDetalle(detalle) {
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
     <div class="profile-userbuttons">
-        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modelId">
-                Calificar
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modelId">
+                Califica
 
         </button>
-        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modelId2">
-                Comentar
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modelId2">
+                Comenta
 
         </button> 
     </div>
