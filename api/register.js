@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
     correo: req.body.correo, 
     carrera: req.body.carrera, 
     contraseña: req.body.password, 
-    rol: false, 
+    admin: false, 
 
   });
 
