@@ -60,4 +60,7 @@ app.use('/api/perfil/', require('./api/perfil'))
 // Login.
 app.use('/api/login/', require('./api/login'))
 
+// Register.
+app.use('/api/register/', require('./api/register'))
+
 
