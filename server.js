@@ -1,6 +1,7 @@
 "use sctrict"
 let express = require('express');
 let app = express();
+var bodyParser = require('body-parser')
 
 //url to our db on Atlas
 let connectionString = 'mongodb+srv://dbUser:Recomendaciones12@recomendaciones-iteso-akupu.mongodb.net/test?retryWrites=true&w=majority'
@@ -26,7 +27,10 @@ db.once('open', function() {
 
 // Static Website.
 app.use(express.static('public')); 
-
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+  })); 
 var port = process.env.port || 3000;
 
 app.listen(port);
@@ -47,5 +51,9 @@ app.use('/api/materiasDetail/', require('./api/materiasDetail'))
 
 // Perfil.
 app.use('/api/perfil/', require('./api/perfil'))
+
+
+// Login.
+app.use('/api/login/', require('./api/login'))
 
 
