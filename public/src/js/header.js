@@ -84,12 +84,12 @@ document.querySelector("header").innerHTML = `
                                         <i class="fa fa-key"></i>
                                     </span>
                                 </div>
-                                <input type="password" class="form-control" id="password" placeholder="contraseña">
+                                <input type="password" class="form-control" id="passwordLogin" placeholder="contraseña">
                             </div>
                         </div>
                         <!-- Login & close -->
                         <div class="form-group">
-                            <button type="button" value="Login" data-dismiss="modal" class="btn btn-primary login_btn">Login</button>
+                            <button type="button" value="Login"  onClick="login()" class="btn btn-primary login_btn" >Login</button>
                             <button type="button" value="Admin" data-toggle="modal" href="#loginAdminModal" data-dismiss="modal" class="btn btn-success login_btn">Admin</button>
                             <button type="button" value="Close" data-dismiss="modal" class="btn btn-secondary login_btn">Cerrar</button>
                         </div>
@@ -372,3 +372,39 @@ document.querySelector("header").innerHTML = `
     </div>
     <!--Edit modal-->
 `;
+
+
+function login(){
+    console.log(document.getElementById('emailLogin').value)
+    fetch('api/login', {
+        method: 'post',
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: 'email='+document.getElementById('emailLogin').value+'&password='+document.getElementById('passwordLogin').value
+      })
+      .then(
+        function(response) {
+          if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+              response.status);
+            return;
+          }
+    
+          // Examine the text in the response
+          response.json().then(function(data) {
+            console.log(data);
+            if(data.token){
+                document.cookie = "token="+data.token;
+                $('#loginModal').modal('hide');
+
+            }else{
+                alert("Usuario o contraseña incorrecta")
+            }
+          });
+        }
+      )
+      .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+      });
+}
